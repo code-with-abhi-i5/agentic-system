@@ -320,3 +320,23 @@ export const configureDatasetSchedule = async (datasetId, scheduleConfig) => {
   }
 };
 
+/**
+ * Delete a dataset from backend database
+ */
+export const deleteBackendDataset = async (datasetId) => {
+  try {
+    const res = await fetch(`${API_BASE}/datasets/${datasetId}`, {
+      method: "DELETE",
+      headers: getAuthHeaders(),
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      throw new Error(data.error || "Failed to delete dataset");
+    }
+    return data;
+  } catch (error) {
+    console.error("Delete dataset error:", error);
+    throw error;
+  }
+};
+

@@ -15,23 +15,7 @@ app.use(requestLogger);
 app.use(cookieParser());
 app.use(
     cors({
-        origin: (origin, callback) => {
-            if (!origin) return callback(null, true);
-            const clientUrl = (process.env.CLIENT_URL || "").replace(/\/$/, "");
-            const normalizedOrigin = origin.replace(/\/$/, "");
-            
-            if (
-                !process.env.CLIENT_URL ||
-                normalizedOrigin === clientUrl ||
-                normalizedOrigin === "http://localhost:5173" ||
-                normalizedOrigin === "http://localhost:3000" ||
-                origin.endsWith(".vercel.app") ||
-                process.env.NODE_ENV !== "production"
-            ) {
-                return callback(null, true);
-            }
-            return callback(new Error(`CORS policy does not allow access from ${origin}`));
-        },
+        origin: process.env.CLIENT_URL,
         credentials: true,
     })
 );

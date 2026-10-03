@@ -25,11 +25,12 @@ import {
   History,
   Clock,
   RefreshCw,
+  Trash2,
 } from "lucide-react";
 import TimeTravelDiffModal from "./TimeTravelDiffModal";
 import { calculateFreshness } from "../utils/freshness";
 
-export default function DataTable({ dataset = [], datasetId, onInspectSource, onExportClick, onChatClick, onReportClick }) {
+export default function DataTable({ dataset = [], datasetId, onInspectSource, onExportClick, onChatClick, onReportClick, onDeleteClick }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [sortField, setSortField] = useState("confidence");
@@ -330,6 +331,34 @@ export default function DataTable({ dataset = [], datasetId, onInspectSource, on
             <Download style={{ width: "14px", height: "14px" }} />
             <span>Export Data</span>
           </button>
+
+          {datasetId && onDeleteClick && (
+            <button
+              onClick={() => {
+                if (window.confirm(`Are you sure you want to delete "${serverTitle || "this dataset"}"? This will permanently remove it from the database.`)) {
+                  onDeleteClick(datasetId);
+                }
+              }}
+              className="matte-nav-inactive"
+              style={{
+                border: "1px solid rgba(239, 68, 68, 0.3)",
+                background: "rgba(239, 68, 68, 0.08)",
+                color: "#ef4444",
+                padding: "0.45rem 0.85rem",
+                fontSize: "0.8rem",
+                borderRadius: "8px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.4rem",
+                cursor: "pointer",
+                transition: "all 0.2s ease"
+              }}
+              title="Delete this dataset permanently from database"
+            >
+              <Trash2 style={{ width: "14px", height: "14px" }} />
+              <span>Delete</span>
+            </button>
+          )}
         </div>
       </div>
       

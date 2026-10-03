@@ -12,7 +12,7 @@ import {
   HelpCircle,
   Sparkles
 } from "lucide-react";
-export default function Sidebar({ activeTab, setActiveTab }) {
+export default function Sidebar({ activeTab, setActiveTab, datasetCount = 0 }) {
 
   return (
     <aside className="sidebar matte-sidebar" style={{ width: "240px", padding: "1.5rem", justifyContent: "space-between" }}>
@@ -38,7 +38,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                 <Layers size={16} /> <span style={{ fontSize: "0.85rem", fontWeight: "500" }}>Datasets</span>
               </div>
-              <span style={{ background: "#333", color: "#fff", fontSize: "0.7rem", padding: "0.1rem 0.4rem", borderRadius: "999px" }}>12</span>
+              <span style={{ background: "#333", color: "#fff", fontSize: "0.7rem", padding: "0.1rem 0.4rem", borderRadius: "999px" }}>{datasetCount}</span>
             </button>
           </div>
         </div>

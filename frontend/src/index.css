@@ -1668,13 +1668,13 @@ body::before {
 
 .matte-grid-layout {
   display: grid;
-  grid-template-columns: 1.1fr 1fr 1.1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
   margin-bottom: 1.25rem;
   align-items: stretch;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
   .matte-grid-layout {
     grid-template-columns: 1fr;
   }
